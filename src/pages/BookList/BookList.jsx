@@ -1,18 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setBooks,
-  setBookCount,
-  setCurrentPage,
-  addMoreBooks,
-} from "../../app/bookReducer";
-import { setTitle, setCategory, setSorting } from "../../app/searchParams";
-import { setIsLoading } from "../../app/loadReducer";
+import { setCurrentPage, addMoreBooks } from "../../app/bookReducer";
+import { setIsLoading, setOpen } from "../../app/loadReducer";
 import BookCard from "../../components/BookCard/BookCard";
 import Button from "@mui/material/Button";
 import "./BookList.css";
 import { APIkey } from "../../helpers/data";
 import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 const BookList = () => {
   const dispatch = useDispatch();
@@ -23,6 +18,7 @@ const BookList = () => {
   const sorting = useSelector((state) => state.search.sorting);
   const currentPage = useSelector((state) => state.books.currentPage);
   const isLoading = useSelector((state) => state.loading.isLoading);
+  const open = useSelector((state) => state.loading.isOpen);
 
   const loadMoreBooks = async (title, category, sorting, currentPage) => {
     let categorySortingParameter = "";
@@ -37,6 +33,7 @@ const BookList = () => {
     }
 
     dispatch(setIsLoading(true));
+    dispatch(setOpen(true));
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${title}${categorySortingParameter}&orderBy=${sorting}&maxResults=30${currentPageParameter}${APIkey}`
     );
@@ -48,6 +45,7 @@ const BookList = () => {
     const data = await response.json();
     dispatch(addMoreBooks(data.items));
     dispatch(setIsLoading(false));
+    dispatch(setOpen(false));
   };
 
   return (
@@ -75,9 +73,12 @@ const BookList = () => {
         </div>
       ) : null}
       {isLoading ? (
-        <div>
-          <CircularProgress />
-        </div>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
       ) : null}
     </div>
   );

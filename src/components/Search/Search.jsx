@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { setBooks, setBookCount, setCurrentPage } from "../../app/bookReducer";
 import { setTitle, setCategory, setSorting } from "../../app/searchParams";
-import { setIsLoading } from "../../app/loadReducer";
+import { setIsLoading, setOpen } from "../../app/loadReducer";
 import { options } from "../../helpers/data";
 import { APIkey } from "../../helpers/data";
 import "./Search.css";
@@ -23,7 +23,6 @@ const Search = () => {
   const category = useSelector((state) => state.search.category);
   const sorting = useSelector((state) => state.search.sorting);
   const currentPage = useSelector((state) => state.books.currentPage);
-  const isLoading = useSelector((state) => state.loading.isLoading);
 
   const searchBooks = async (title, category, sorting, currentPage) => {
     let categorySortingParameter = "";
@@ -37,6 +36,7 @@ const Search = () => {
     }
 
     dispatch(setIsLoading(true));
+    dispatch(setOpen(true));
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${title}${categorySortingParameter}&orderBy=${sorting}&maxResults=30${currentPageParameter}${APIkey}`
     );
@@ -50,6 +50,7 @@ const Search = () => {
     dispatch(setBooks(data.items));
     dispatch(setBookCount(data.totalItems));
     dispatch(setIsLoading(false));
+    dispatch(setOpen(false));
     dispatch(setCurrentPage(1));
   };
 
