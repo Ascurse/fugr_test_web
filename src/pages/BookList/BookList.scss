@@ -1,0 +1,16 @@
+.booklist {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.booklist__items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.load_button {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,46 @@
+.bookcard {
+  background-color: #EAF6F6;
+  width: 300px;
+  min-height: 450px;
+  margin: 10px 30px 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.bookcard img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 180px;
+  width: auto;
+  margin: 10px;
+}
+
+.bookcard div {
+  margin: 5px;
+}
+
+.book__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.book__category {
+  color: gray;
+  text-decoration: underline;
+  height: 20px;
+}
+
+.book__title {
+  min-height: 100px;
+}
+
+.book__authors {
+  color: grey;
+  height: 80px;
+}
+/*# sourceMappingURL=BookCard.css.map */
