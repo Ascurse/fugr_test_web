@@ -1,0 +1,35 @@
+.book-details {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.bookcover_container {
+    flex: 1;
+    height: 100%;
+    img {
+        object-fit: cover;
+        height: 400px;
+    }
+}
+
+.book-info {
+    margin: 10px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    .book-info__categories {
+        color: gray;
+    }
+    .book-info__authors {
+        color: darkgray;
+        text-decoration: underline;
+    }
+    .book-info__desc {
+       border: ridge;
+       min-height: 200px;
+    }
+}

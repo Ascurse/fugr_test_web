@@ -1,8 +1,8 @@
 .bookcard {
   background-color: #EAF6F6;
-  width: 300px;
+  width: 280px;
   min-height: 450px;
-  margin: 10px 30px 10px 30px;
+  padding: 10px 20px 10px 20px;
   border-radius: 10px;
   cursor: pointer;
 }

@@ -1,7 +1,11 @@
 import React from "react";
 import "./BookCard.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setCurrentBook } from "../../app/bookReducer";
+import { motion } from "framer-motion";
 
-const mapArrayToStr = (arr, sep = ",") => {
+export const arrayToStr = (arr, sep = ",") => {
   let el = arr.map((item) => {
     if (arr.indexOf(item) !== arr.length - 1) {
       return <span key={arr.indexOf(item)}>{item + sep + " "}</span>;
@@ -13,11 +17,24 @@ const mapArrayToStr = (arr, sep = ",") => {
 };
 
 const BookCard = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(setCurrentBook(props.book));
+    navigate(`/${props.book.title}`);
+  };
+
   return (
-    <div className="bookcard">
+    <motion.div
+      className="bookcard"
+      onClick={handleClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <img
         className="book__cover"
-        alt="book cover"
+        alt="Book Cover"
         src={
           props.book.imageLinks?.smallThumbnail
             ? props.book.imageLinks.smallThumbnail
@@ -33,11 +50,11 @@ const BookCard = (props) => {
         </h3>
         <div className="book__authors">
           {props.book.authors?.length > 0
-            ? mapArrayToStr(props.book.authors, ",")
+            ? arrayToStr(props.book.authors, ",")
             : ""}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -13,8 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setBooks, setBookCount, setCurrentPage } from "../../app/bookReducer";
 import { setTitle, setCategory, setSorting } from "../../app/searchParams";
 import { setIsLoading, setOpen } from "../../app/loadReducer";
-import { options } from "../../helpers/data";
-import { APIkey } from "../../helpers/data";
+import { options, APIkey } from "../../helpers/data";
 import "./Search.css";
 
 const Search = () => {
@@ -23,6 +22,12 @@ const Search = () => {
   const category = useSelector((state) => state.search.category);
   const sorting = useSelector((state) => state.search.sorting);
   const currentPage = useSelector((state) => state.books.currentPage);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      searchBooks(title, category, sorting, currentPage);
+    }
+  };
 
   const searchBooks = async (title, category, sorting, currentPage) => {
     let categorySortingParameter = "";
@@ -57,9 +62,12 @@ const Search = () => {
   return (
     <div className="search">
       <TextField
+        variant="outlined"
+        color="primary"
         placeholder="Search for books"
         defaultValue=""
         onChange={(e) => dispatch(setTitle(e.target.value))}
+        onKeyPress={handleKeyPress}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

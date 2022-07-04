@@ -34,6 +34,7 @@ const BookList = () => {
 
     dispatch(setIsLoading(true));
     dispatch(setOpen(true));
+
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${title}${categorySortingParameter}&orderBy=${sorting}&maxResults=30${currentPageParameter}${APIkey}`
     );
@@ -50,9 +51,11 @@ const BookList = () => {
 
   return (
     <div className="booklist">
-      <div className="booklist__counter">
-        Found <b>{bookCount}</b> results
-      </div>
+      {bookCount ? (
+        <div className="booklist__counter">
+          Found <b>{bookCount}</b> results
+        </div>
+      ) : null}
       <div className="booklist__items">
         {books.length > 0 ? (
           books.map((book) => (
