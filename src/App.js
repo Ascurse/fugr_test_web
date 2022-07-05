@@ -8,7 +8,7 @@ import BookDetail from "./pages/BookDetail/BookDetail";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={window.location.pathname || ""}>
         <Header />
         <Routes>
           <Route path="/" element={<BookList />} />
