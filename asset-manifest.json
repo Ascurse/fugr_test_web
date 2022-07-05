@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fugr_test_web/static/css/main.191d16de.css",
+    "main.js": "/fugr_test_web/static/js/main.77cd9176.js",
+    "index.html": "/fugr_test_web/index.html",
+    "main.191d16de.css.map": "/fugr_test_web/static/css/main.191d16de.css.map",
+    "main.77cd9176.js.map": "/fugr_test_web/static/js/main.77cd9176.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.191d16de.css",
+    "static/js/main.77cd9176.js"
+  ]
+}
