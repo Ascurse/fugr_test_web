@@ -1,3 +1,7 @@
+## Github pages link:
+
+<a href="https://ascurse.github.io/fugr_test_web/">Website demo</a>
+
 # Тестовое задание на позицию frontend разработчика
 
 Результат выполнения задания нужно будет оформить здесь же, на гитхабе.
